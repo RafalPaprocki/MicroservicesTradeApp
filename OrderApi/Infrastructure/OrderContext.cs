@@ -1,13 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using OrderService.Model;
 
 namespace OrderService.Infrastructure
 {
     public class OrderContext : DbContext
-    {
-        public OrderContext(){}
-        
-        public OrderContext(DbContextOptions<OrderContext> options) : base (options) {}
+    { 
+        public OrderContext(DbContextOptions<OrderContext> options) : base(options)
+        {
+            Console.WriteLine("This method was invoked");
+        }
         
         public DbSet<Order> Orders { get; set; }
 

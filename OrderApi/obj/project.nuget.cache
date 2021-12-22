@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "B1ZRvCbqlbQOl0845D0ihpEL3VfDLHs97I0Z9kKDLJDFEfzoXHaRsWq42npkLNWqOZOaaf4ce/88ft7jXBkbAw==",
+  "dgSpecHash": "RVK2xbiqj+obQDYAceBnXcoWes4BhEmiulg4jSl67+6No07q0B3Y6rRIa6q9WiOButJRS+WBrhrN85Cq2QepNA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Rafal\\RiderProjects\\TradingApp\\OrderApi\\OrderApi.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Rafal\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Rafal\\.nuget\\packages\\masstransit\\7.2.2\\masstransit.7.2.2.nupkg.sha512",
     "C:\\Users\\Rafal\\.nuget\\packages\\masstransit.aspnetcore\\7.2.2\\masstransit.aspnetcore.7.2.2.nupkg.sha512",
+    "C:\\Users\\Rafal\\.nuget\\packages\\masstransit.entityframeworkcore\\7.2.2\\masstransit.entityframeworkcore.7.2.2.nupkg.sha512",
     "C:\\Users\\Rafal\\.nuget\\packages\\masstransit.extensions.dependencyinjection\\7.2.2\\masstransit.extensions.dependencyinjection.7.2.2.nupkg.sha512",
     "C:\\Users\\Rafal\\.nuget\\packages\\masstransit.rabbitmq\\7.2.2\\masstransit.rabbitmq.7.2.2.nupkg.sha512",
     "C:\\Users\\Rafal\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.11\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.11.nupkg.sha512",

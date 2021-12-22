@@ -103,6 +103,19 @@
           "lib/netstandard2.0/MassTransit.AspNetCoreIntegration.dll": {}
         }
       },
+      "MassTransit.EntityFrameworkCore/7.2.2": {
+        "type": "package",
+        "dependencies": {
+          "MassTransit": "7.2.2",
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.11"
+        },
+        "compile": {
+          "lib/netstandard2.0/MassTransit.EntityFrameworkCoreIntegration.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MassTransit.EntityFrameworkCoreIntegration.dll": {}
+        }
+      },
       "MassTransit.Extensions.DependencyInjection/7.2.2": {
         "type": "package",
         "dependencies": {
@@ -3028,6 +3041,20 @@
         "lib/netstandard2.0/MassTransit.AspNetCoreIntegration.xml",
         "masstransit.aspnetcore.7.2.2.nupkg.sha512",
         "masstransit.aspnetcore.nuspec",
+        "mt-logo-small.png"
+      ]
+    },
+    "MassTransit.EntityFrameworkCore/7.2.2": {
+      "sha512": "fjN6LbINcaqY0jilTXo0God3XeqcMC7QvXnJI4QBudGuyWxygkPpHO55gFMLful9+iPR7Yn4MpCm4/kS7aznIw==",
+      "type": "package",
+      "path": "masstransit.entityframeworkcore/7.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/MassTransit.EntityFrameworkCoreIntegration.dll",
+        "lib/netstandard2.0/MassTransit.EntityFrameworkCoreIntegration.xml",
+        "masstransit.entityframeworkcore.7.2.2.nupkg.sha512",
+        "masstransit.entityframeworkcore.nuspec",
         "mt-logo-small.png"
       ]
     },
@@ -9465,6 +9492,7 @@
       "AutoMapper >= 10.1.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
       "MassTransit.AspNetCore >= 7.2.2",
+      "MassTransit.EntityFrameworkCore >= 7.2.2",
       "MassTransit.RabbitMQ >= 7.2.2",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 5.0.11",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.12",
@@ -9525,6 +9553,10 @@
             "version": "[8.1.1, )"
           },
           "MassTransit.AspNetCore": {
+            "target": "Package",
+            "version": "[7.2.2, )"
+          },
+          "MassTransit.EntityFrameworkCore": {
             "target": "Package",
             "version": "[7.2.2, )"
           },

@@ -12,6 +12,7 @@ using OrderService.Dto;
 using OrderService.Infrastructure;
 using OrderService.IntegrationsEvent;
 using OrderService.Model;
+using OrderService.Saga.CreateOrderSaga;
 
 namespace OrderService.Controllers
 {
@@ -28,13 +29,17 @@ namespace OrderService.Controllers
         private readonly IPublishEndpoint _publishEndpoint;
         private readonly OrderContext _context;
         private readonly IMapper _mapper;
-
-        public OrderController(ILogger<OrderController> logger, IPublishEndpoint publishEndpoint, OrderContext context, IMapper mapper)
+        private readonly ISendEndpointProvider _sendEndpointProvider;
+        private readonly CreateOrderSagaDbContext _sagaContext;
+        
+        public OrderController(ILogger<OrderController> logger, IPublishEndpoint publishEndpoint, OrderContext context, IMapper mapper, ISendEndpointProvider sendEndpointProvider, CreateOrderSagaDbContext sagaContext)
         {
             _publishEndpoint = publishEndpoint;
             _logger = logger;
             _context = context;
             _mapper = mapper;
+            _sendEndpointProvider = sendEndpointProvider;
+            _sagaContext = sagaContext;
         }
 
         [HttpPost]
@@ -42,6 +47,8 @@ namespace OrderService.Controllers
         {
             try
             {
+                // TODO remove
+                var endpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri("queue:orderCreated")); 
                 if (!ModelState.IsValid)
                 {
                     return BadRequest();
@@ -52,9 +59,10 @@ namespace OrderService.Controllers
                 _context.Add(order);
                 await _context.SaveChangesAsync();
 
-                var orderCreatedEvent = _mapper.Map<OrderCreatedEvent>(order);
-                await _publishEndpoint.Publish(orderCreatedEvent);
-
+                var orderSubmittedEvent = _mapper.Map<OrderSubmitted>(order);
+                await _publishEndpoint.Publish(orderSubmittedEvent);
+                await endpoint.Send(orderSubmittedEvent); // TODO remove
+                
                 return CreatedAtAction(nameof(Get), new {id = order.Id}, order);
             }
             catch (Exception ex)

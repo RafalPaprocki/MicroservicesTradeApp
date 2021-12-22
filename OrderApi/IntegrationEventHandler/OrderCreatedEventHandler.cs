@@ -5,7 +5,7 @@ using OrderService.IntegrationsEvent;
 
 namespace OrderService.IntegrationEventHandler
 {
-    public class OrderCreatedEventHandler : IConsumer<OrderCreatedEvent>
+    public class OrderCreatedEventHandler : IConsumer<OrderSubmitted>
     {
         private readonly ILogger<OrderCreatedEventHandler> _logger;
 
@@ -14,7 +14,7 @@ namespace OrderService.IntegrationEventHandler
             _logger = logger;
         }
 
-        public Task Consume(ConsumeContext<OrderCreatedEvent> context)
+        public Task Consume(ConsumeContext<OrderSubmitted> context)
         {
             _logger.LogInformation("Value: {Value}", context.Message.OrderId);
             return Task.CompletedTask;

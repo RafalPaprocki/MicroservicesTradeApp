@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using MassTransit;
+using MassTransit.EntityFrameworkCoreIntegration;
+using MassTransit.JobService.Components.StateMachines;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OrderService.Infrastructure;
 using OrderService.IntegrationEventHandler;
+using OrderService.Saga.CreateOrderSaga;
 
 namespace OrderService
 {
@@ -35,8 +34,8 @@ namespace OrderService
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "OrderApi", Version = "v1"});
             });
-
-            services.AddDbContext<OrderContext>(options =>
+            
+            services.AddDbContext<OrderContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddDatabaseDeveloperPageExceptionFilter(); 
@@ -49,8 +48,22 @@ namespace OrderService
                     cfg.ReceiveEndpoint("orderCreated", e =>
                     {
                         e.ConfigureConsumer<OrderCreatedEventHandler>(context); 
-                    });
-                });
+                    }); 
+                }); 
+  
+                 x.AddSagaStateMachine<CreateOrderStateMachine, CreateOrderState>()
+                    .EntityFrameworkRepository(r =>
+                    {
+                        r.ConcurrencyMode = ConcurrencyMode.Optimistic;
+                        r.AddDbContext<DbContext, CreateOrderSagaDbContext>((provider, builder) =>
+                        {
+                            builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), m =>
+                            {
+                                m.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name);
+                                m.MigrationsHistoryTable($"__{nameof(CreateOrderSagaDbContext)}");
+                            });
+                        });
+                    }); 
             });
             
             services.AddMassTransitHostedService();
