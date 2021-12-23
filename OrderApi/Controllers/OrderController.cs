@@ -29,17 +29,15 @@ namespace OrderService.Controllers
         private readonly IPublishEndpoint _publishEndpoint;
         private readonly OrderContext _context;
         private readonly IMapper _mapper;
-        private readonly ISendEndpointProvider _sendEndpointProvider;
-        private readonly CreateOrderSagaDbContext _sagaContext;
+        private readonly ISendEndpointProvider _sendEndpointProvider; 
         
-        public OrderController(ILogger<OrderController> logger, IPublishEndpoint publishEndpoint, OrderContext context, IMapper mapper, ISendEndpointProvider sendEndpointProvider, CreateOrderSagaDbContext sagaContext)
+        public OrderController(ILogger<OrderController> logger, IPublishEndpoint publishEndpoint, OrderContext context, IMapper mapper, ISendEndpointProvider sendEndpointProvider )
         {
             _publishEndpoint = publishEndpoint;
             _logger = logger;
             _context = context;
             _mapper = mapper;
-            _sendEndpointProvider = sendEndpointProvider;
-            _sagaContext = sagaContext;
+            _sendEndpointProvider = sendEndpointProvider; 
         }
 
         [HttpPost]

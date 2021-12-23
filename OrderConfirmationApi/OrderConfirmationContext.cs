@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OrderConfirmationApi.Domain;
 
 namespace OrderConfirmationApi
 {
@@ -12,5 +13,7 @@ namespace OrderConfirmationApi
         {
             base.OnModelCreating(modelBuilder);
         }
+        
+        public DbSet<Order> Orders { get; set; } 
     }
 }

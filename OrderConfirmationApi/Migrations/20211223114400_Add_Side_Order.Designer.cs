@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OrderConfirmationApi;
 
 namespace OrderConfirmationApi.Migrations
 {
     [DbContext(typeof(OrderConfirmationContext))]
-    partial class OrderConfirmationContextModelSnapshot : ModelSnapshot
+    [Migration("20211223114400_Add_Side_Order")]
+    partial class Add_Side_Order
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -12,5 +12,6 @@ namespace OrderConfirmationApi.Domain
         public string Broker { get; set; }
         public string Market { get; set; }
         public double PercentOfRealized { get; set; }
+        public string Side { get; set; }
     }
 }

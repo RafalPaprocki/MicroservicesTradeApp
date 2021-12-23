@@ -7,8 +7,7 @@ namespace OrderService.Infrastructure
     public class OrderContext : DbContext
     { 
         public OrderContext(DbContextOptions<OrderContext> options) : base(options)
-        {
-            Console.WriteLine("This method was invoked");
+        { 
         }
         
         public DbSet<Order> Orders { get; set; }

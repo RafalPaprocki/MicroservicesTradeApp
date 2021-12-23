@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OrderConfirmationApi;
 
 namespace OrderConfirmationApi.Migrations
 {
     [DbContext(typeof(OrderConfirmationContext))]
-    partial class OrderConfirmationContextModelSnapshot : ModelSnapshot
+    [Migration("20211222164443_Add_Order_Table")]
+    partial class Add_Order_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,6 @@ namespace OrderConfirmationApi.Migrations
 
                     b.Property<double>("PercentOfRealized")
                         .HasColumnType("float");
-
-                    b.Property<string>("Side")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");

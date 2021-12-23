@@ -10,5 +10,6 @@ namespace OrderService.Dto
         public decimal Price { get; set; }
         public decimal Amount { get; set; }
         public double FillPercentage { get; set; }
+        public string Side { get; set; }
     }
 }

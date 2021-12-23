@@ -1,7 +1,8 @@
-﻿namespace OrderConfirmationApi.Event
+﻿namespace OrderService.IntegrationsEvent
 {
-    public class OrderAccepted
+    public record OrderAccepted
     {
-        
+        public int OrderId { get; set; }
+        public string Status { get; set; }
     }
 }

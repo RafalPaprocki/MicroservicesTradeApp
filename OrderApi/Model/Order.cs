@@ -13,6 +13,7 @@ namespace OrderService.Model
         public decimal Price { get; set; }
         public decimal Amount { get; set; }
         public double FillPercentage { get; set; }
+        public string Side { get; set; }
         public int UserId { get; set; }
     }
 }

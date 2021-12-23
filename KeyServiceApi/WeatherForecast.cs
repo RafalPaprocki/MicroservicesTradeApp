@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApplication1
+namespace KeyServiceApi
 {
     public class WeatherForecast
     {

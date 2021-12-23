@@ -8,12 +8,10 @@ namespace OrderService.IntegrationEventHandler
     public class OrderCreatedEventHandler : IConsumer<OrderSubmitted>
     {
         private readonly ILogger<OrderCreatedEventHandler> _logger;
-
         public OrderCreatedEventHandler(ILogger<OrderCreatedEventHandler> logger)
         {
             _logger = logger;
         }
-
         public Task Consume(ConsumeContext<OrderSubmitted> context)
         {
             _logger.LogInformation("Value: {Value}", context.Message.OrderId);
